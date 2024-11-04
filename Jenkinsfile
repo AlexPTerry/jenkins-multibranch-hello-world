@@ -1,5 +1,10 @@
 pipeline {
     agent any
+
+    tools {
+        maven "M3"
+    }
+
     stages {
         stage('SCM') {
             steps {
@@ -7,9 +12,9 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Build') {
+        stage('Compile') {
             steps {
-                sh './mvn clean install'
+                sh "mvn clean compile"
             }
         }
     }
